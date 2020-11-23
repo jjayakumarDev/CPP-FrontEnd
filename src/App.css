@@ -1,5 +1,9 @@
+.sidebar-sticky a{
+  color:#212529 !important; 
+}
+
 .App {
-  text-align: center;
+  height: 1000px;
 }
 
 .App-logo {
@@ -24,8 +28,110 @@
   color: white;
 }
 
+.ReactStickyHeader_fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+}
+
 .App-link {
   color: #61dafb;
+}
+
+.dashboard-position {
+  position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;
+}
+
+.dashboard-position-h-w{
+  position:absolute;width:1000000px;height:1000000px;left:0;top:0
+}
+
+.dashboard-position-h-w-200{
+  position:absolute;width:200%;height:200%;left:0; top:0
+}
+
+.chart-w-h{
+  display: block; height: 343px; width: 814px;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 420px;
+  padding: 15px;
+  margin: auto;
+}
+
+ul.timeline > li:before {
+  content: ' ';
+  background: white;
+  display: inline-block;
+  position: absolute;
+  border-radius: 50%;
+  border: 3px solid #22c0e8;
+  left: 20px;
+  width: 20px;
+  height: 20px;
+  z-index: 400;
+}
+
+ul.timeline:before {
+  content: ' ';
+  background: #d4d9df;
+  display: inline-block;
+  position: absolute;
+  left: 29px;
+  width: 2px;
+  height: 100%;
+  z-index: 400;
+}
+
+ul.timeline {
+  list-style-type: none;
+  position: relative;
+}
+
+ul.timeline > li {
+  margin: 20px 0;
+  padding-left: 20px;
+}
+
+.toggle-nav-bar-display{
+  display: block !important;
+}
+
+.chat-list .chat-body {
+  margin-left: 20px;
+  float: left;
+  width: 70%;
+}
+
+.chat-list .chat-message {
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  background: #5a99ee;
+  display: inline-block;
+  padding: 10px 20px;
+  position: relative;
+  color: #ffffff;
+}
+
+.chat-list .chat-message2 {
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  background: #343a40;
+  display: inline-block;
+  padding: 10px 20px;
+  position: relative;
+  color: #ffffff;
+}
+
+.align-center {
+  display: flex;
+  justify-content: center;
 }
 
 @keyframes App-logo-spin {
