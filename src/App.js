@@ -8,6 +8,9 @@ import Events from "./Components/Events";
 import Profile from "./Components/Profile";
 import Reports from "./Components/Reports";
 import Header from "./Components/Header";
+import Notification from './Components/Notitification';
+import SignUp from "./Components/SignUp";
+import CognitoLogin from "./Components/CognitoLogin";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import { Component } from 'react';
 
@@ -44,6 +47,9 @@ class App extends Component {
                 <Link onClick={this.showNavBar} class="nav-link" to="/Chat">Chat</Link>
               </li>
               <li class="nav-item">
+                <Link onClick={this.showNavBar} class="nav-link" to="/Notification">Notification</Link>
+              </li>
+              <li class="nav-item">
                 <Link onClick={this.showNavBar} class="nav-link" to="/Achievements">Achievements</Link>
               </li>
               <li class="nav-item">
@@ -60,9 +66,12 @@ class App extends Component {
         
         <Switch>
         <Route path="/Login" exact component={() => <Login />} />
+        <Route path="/CognitoLogin" exact component={() => <CognitoLogin />} />
+        <Route path="/SignUp" exact component={() => <SignUp />} />
         <Route path="/" exact component={() => <NewsFeeds />} />
         <Route path="/Achievements" exact component={() => <Achievements />} />
         <Route path="/Chat" exact component={() => <Chat />} />
+        <Route path="/Notification" exact component={() => <Notification />} />
         <Route path="/Events" exact component={() => <Events />} />
         <Route path="/Profile" exact component={() => <Profile />} />
         <Route path="/Reports" exact component={() => <Reports />} />

@@ -1,9 +1,20 @@
 import { Component } from 'react';
+import Services from './Services';
 
 class NewsFeeds extends Component {
     constructor(props){
         super(props)
     }
+
+    componentDidMount(){
+        let getFeed = {
+            "feedId":"1"
+        }
+        Services.getNewsfeed(getFeed).then((res) => {
+            console.log(res.data);
+        });
+    }
+
     render(){
         return(
             <div>
