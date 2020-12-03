@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const ENTERPRISE_API_URL =  "https://gig0ji9315.execute-api.us-east-1.amazonaws.com/default/";
+const ENTERPRISE_API_URL =  "https://mnysfog0nj.execute-api.us-east-1.amazonaws.com/default/";
 
 class Services {
     //Employe
