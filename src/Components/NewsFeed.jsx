@@ -7,10 +7,8 @@ class NewsFeeds extends Component {
     }
 
     componentDidMount(){
-        let getFeed = {
-            "feedId":"1"
-        }
-        Services.getNewsfeed(getFeed).then((res) => {
+        
+        Services.getNewsfeed("1").then((res) => {
             console.log(res.data);
         });
     }
