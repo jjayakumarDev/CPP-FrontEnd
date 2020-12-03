@@ -33,7 +33,7 @@ class Services {
 
     //Newsfeed
     getNewsfeed(feedId) {
-        return axios.get(ENTERPRISE_API_URL+"newsFeedFunction", feedId);
+        return axios.get(ENTERPRISE_API_URL+"newsFeedFunction?feedId="+feedId);
     }
     postNewsfeed(feedContent) {
         return axios.post(ENTERPRISE_API_URL+"newsFeedFunction", feedContent);
