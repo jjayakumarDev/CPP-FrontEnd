@@ -4,16 +4,61 @@ import Services from './Services';
 class NewsFeeds extends Component {
     constructor(props){
         super(props)
+        this.state = {
+            feed: [],
+            comments: []
+        }
     }
 
     componentDidMount(){
         
-        Services.getNewsfeed("1").then((res) => {
+        Services.getNewsfeed().then((res) => {
             console.log(res.data);
+            this.setState({feed:res.data})
         });
     }
 
     render(){
+        
+        const newsFeed = Object.keys(this.state.feed).map((key) => {
+            const comments = Object.keys(this.state.feed[key].comments).map((ckey) => {
+                return (
+                    <ul href="#" class="card-link">
+                                <li class="fa fa-comment">{this.state.feed[key].comments[ckey].commentContent}</li>
+                        </ul>
+                )
+            })
+            return <div class="card gedf-card">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="ml-2">
+                                    <div class="h5 m-0">{this.state.feed[key].name}</div>
+                                        <div class="h7 text-muted">{this.state.feed[key].role}</div>
+                                    </div>
+                                </div>
+                                <div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card-body">
+                            <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>{this.state.feed[key].time}</div>
+                            <a class="card-link" href="#">
+                                <h5 class="card-title">{this.state.feed[key].topic}</h5>
+                            </a>
+
+                            <p class="card-text">
+                            {this.state.feed[key].message}
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="card-link"><i class="fa fa-gittip"></i> {this.state.feed[key].likesCount} Likes</a>
+                            {comments}
+                        </div>
+                    </div>
+        })
+        
         return(
             <div>
           <div class="container-fluid">
@@ -52,38 +97,7 @@ class NewsFeeds extends Component {
                         </div>
                     </div>
                 </div>
-                <div class="card gedf-card">
-                    <div class="card-header">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="mr-2">
-                                    <img class="rounded-circle" width="45" src="" alt="profile icon"/>
-                                </div>
-                                <div class="ml-2">
-                                    <div class="h5 m-0">Anonymous Name</div>
-                                    <div class="h7 text-muted">Director of the Company</div>
-                                </div>
-                            </div>
-                            <div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="card-body">
-                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>10 min ago</div>
-                        <a class="card-link" href="#">
-                            <h5 class="card-title">Content Heading</h5>
-                        </a>
-
-                        <p class="card-text">
-                            content
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
-                        <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
-                    </div>
-                </div>
+                {newsFeed}
               </main>
             </div>
           </div>

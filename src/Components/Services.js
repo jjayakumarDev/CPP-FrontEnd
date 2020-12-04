@@ -32,8 +32,8 @@ class Services {
     }
 
     //Newsfeed
-    getNewsfeed(feedId) {
-        return axios.get(ENTERPRISE_API_URL+"newsFeedFunction?feedId="+feedId);
+    getNewsfeed() {
+        return axios.get(ENTERPRISE_API_URL+"newsFeedFunction");
     }
     postNewsfeed(feedContent) {
         return axios.post(ENTERPRISE_API_URL+"newsFeedFunction", feedContent);
@@ -46,8 +46,8 @@ class Services {
     }
 
     //Notification
-    getNotification() {
-        return axios.get(ENTERPRISE_API_URL+"notificationFunction");
+    getNotification(notificationId) {
+        return axios.get(ENTERPRISE_API_URL+"notificationFunction?notificationId="+notificationId);
     }
     postNotification() {
         return axios.post(ENTERPRISE_API_URL+"notificationFunction");
