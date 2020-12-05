@@ -55,7 +55,7 @@ class Chat extends Component {
                 <div className="align-center">
                     {this.displayMessages()}
                 </div>
-                <SockJsClient url='http://localhost:8080/websocket-chat/'
+                <SockJsClient url='http://cppchat-env.eba-tb8ts7kd.us-east-1.elasticbeanstalk.com/'
                               topics={['/topic/user']}
                               onConnect={() => {
                                   console.log("connected");
