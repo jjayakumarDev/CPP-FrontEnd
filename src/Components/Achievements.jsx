@@ -1,36 +1,38 @@
 import { Component } from 'react';
+import Services from './Services';
 
 class Achievements extends Component {
     constructor(props){
         super(props)
+        this.state = {
+            achievementsData: []
+        }
     }
+
+    componentDidMount(){
+        Services.getAchievement('1').then((res) => {
+            this.setState({achievementsData:res.data.achievement})
+            console.log(this.state.achievementsData)
+        });
+      }
+
     render(){
+       const comments = Object.keys(this.state.achievementsData).map((key) => {
+            return (
+                    <li>
+                         <a>{this.state.achievementsData[key].achievementName}</a>
+                         <a class="float-right">{this.state.achievementsData[key].date}</a>
+                         <p>{this.state.achievementsData[key].achievementContent}</p>
+                    </li>
+            )
+        })
         return(
             <div class="container mt-5 mb-5">
                 <div class="row">
                     <div class="col-md-6 offset-md-3">
                         <h4>Achievements History</h4>
                         <ul class="timeline">
-                            <li>
-                                <a href="#">Cloud Architect</a>
-                                <a href="#" class="float-right">21 March, 2025</a>
-                                <p>Working as a Cloud Architect</p>
-                            </li>
-                            <li>
-                                <a href="#">Senior Cloud Engineer</a>
-                                <a href="#" class="float-right">21 March, 2020</a>
-                                <p>Worked as a Senior Cloud Engineer</p>
-                            </li>
-                            <li>
-                                <a href="#">Cloud Engineer</a>
-                                <a href="#" class="float-right">4 March, 2019</a>
-                                <p>Worked as a Cloud Engineer</p>
-                            </li>
-                            <li>
-                                <a href="#">Cloud Practioner</a>
-                                <a href="#" class="float-right">1 April, 2015</a>
-                                <p>Worked as a cloud practioner</p>
-                            </li>
+                        {comments}  
                         </ul>
                     </div>
                 </div>

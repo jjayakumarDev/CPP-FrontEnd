@@ -16,7 +16,7 @@ class Login extends Component {
     render(){
         return(
         <div class="text-center">
-            <form class="form-signin">
+        <form class="form-signin">
         <div class="text-center mb-4">
             <h1 class="h3 mb-3 font-weight-normal">Sign in with Google</h1>
         </div>

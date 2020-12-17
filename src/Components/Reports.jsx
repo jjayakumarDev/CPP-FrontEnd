@@ -1,13 +1,22 @@
-import React from "react";
+import {Component} from "react";
 import { Bar } from "react-chartjs-2";
 import { MDBContainer } from "mdbreact";
+import Service from './Services';
 
-class Reports extends React.Component {
-  state = {
+class Reports extends Component {
+
+  constructor(props){
+    super(props)
+    this.state = {
+        feedback: ''
+    }
+}
+
+  /*state = {
     dataBar: {
       labels: ["Sprint 1", "Sprint 2", "Sprint 3", "Sprint 4", "Sprint 5", "Sprint 6"],
       datasets: [
-        {
+        { 
           label: "% of performance",
           data: [5, 18, 13, 15, 10, 22],
           backgroundColor: [
@@ -57,7 +66,14 @@ class Reports extends React.Component {
       }
     }
   }
+  */
 
+  componentDidMount(){
+    Service.getFeedback('1').then((res) => {
+        this.setState({feedback:res.data})
+        console.log(this.state.feedback)
+    });
+}
 
   render() {
     return (
@@ -66,26 +82,20 @@ class Reports extends React.Component {
     <div class="media text-muted pt-3">
       <p class="media-body pb-3 mb-0 lh-125 border-bottom border-gray">
         <strong class="d-block text-gray-dark">Project Manager:</strong>
-        Feedback from Manager. 
+        {this.state.feedback.manager}
       </p>
     </div>
     <div class="media text-muted pt-3">
       <p class="media-body pb-3 mb-0 lh-125 border-bottom border-gray">
-        <strong class="d-block text-gray-dark">Primary Manager</strong>
-        Feedback from Primary Manager.
-        </p>
-    </div>
-    <div class="media text-muted pt-3">
-      <p class="media-body pb-3 mb-0 lh-125 border-bottom border-gray">
         <strong class="d-block text-gray-dark">Team lead</strong>
-        Feedback from Team lead.
+        {this.state.feedback.lead}
       </p>
     </div>
     <small class="d-block text-right mt-3">
     </small>
     <MDBContainer>
         <h3 className="mt-5">Performance Chart</h3>
-        <Bar data={this.state.dataBar} options={this.state.barChartOptions} />
+        <Bar data={this.state.feedback.dataBar} options={this.state.feedback.barChartOptions} />
       </MDBContainer>
   </div>
       

@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const ENTERPRISE_API_URL =  "https://mnysfog0nj.execute-api.us-east-1.amazonaws.com/default/";
+const ENTERPRISE_API_URL =  "https://emvkgnm1h8.execute-api.us-east-1.amazonaws.com/prod/";
 
 class Services {
     //Employe
-    getEmployee() {
-        return axios.get(ENTERPRISE_API_URL+"employeeFunction");
+    getEmployee(id) {
+        return axios.get(ENTERPRISE_API_URL+"employeeFunction?empId="+id);
     }
     postEmployee() {
         return axios.post(ENTERPRISE_API_URL+"employeeFunction");
@@ -60,8 +60,8 @@ class Services {
     }
 
     //Feedback
-    getFeedback() {
-        return axios.get(ENTERPRISE_API_URL+"feedbackFunction");
+    getFeedback(id) {
+        return axios.get(ENTERPRISE_API_URL+"feedbackFunction?id="+id);
     }
     postFeedback() {
         return axios.post(ENTERPRISE_API_URL+"feedbackFunction");
@@ -74,8 +74,8 @@ class Services {
     }
 
     //Achievement
-    getAchievement() {
-        return axios.get(ENTERPRISE_API_URL+"achievementFunction");
+    getAchievement(id) {
+        return axios.get(ENTERPRISE_API_URL+"achievementFunction?id="+id);
     }
     postAchievement() {
         return axios.post(ENTERPRISE_API_URL+"achievementFunction");

@@ -1,13 +1,18 @@
 import { Component } from 'react';
 import Services from './Services';
+import Category from './CategoryService';
 
 class NewsFeeds extends Component {
     constructor(props){
         super(props)
         this.state = {
             feed: [],
-            comments: []
+            comments: [],
+            category: [],
+            postMessage: ''
         }
+        this.changePostMessageHandler = this.changePostMessageHandler.bind(this);
+        this.doPost = this.doPost.bind(this);
     }
 
     componentDidMount(){
@@ -18,17 +23,40 @@ class NewsFeeds extends Component {
         });
     }
 
+    changePostMessageHandler = (event) => {
+        this.setState({postMessage: event.target.value});
+    }
+      
+    doPost = () => {
+        let category = document.getElementById('category').value;
+
+        const post = {
+                "feedId": "4",
+                "imageKey": "image key",
+                "likesCount": "0",
+                "message": this.state.postMessage,
+                "name": "Jay",
+                "role": "Child Union",
+                "time": new Date().toLocaleString(),
+                "topic": category
+              }
+        Services.postNewsfeed(post); 
+    }
+
     render(){
         
         const newsFeed = Object.keys(this.state.feed).map((key) => {
-            const comments = Object.keys(this.state.feed[key].comments).map((ckey) => {
-                return (
-                    <ul href="#" class="card-link">
-                                <li class="fa fa-comment">{this.state.feed[key].comments[ckey].commentContent}</li>
-                        </ul>
-                )
-            })
-            return <div class="card gedf-card">
+            var comments = "";
+            if(this.state.feed[key].hasOwnProperty('comments')){
+                comments = Object.keys(this.state.feed[key].comments).map((ckey) => {
+                    return (
+                        <ul href="#" class="card-link">
+                                    <li class="fa fa-comment">{this.state.feed[key].comments[ckey].commentContent}</li>
+                            </ul>
+                    )
+                })
+            }
+            return <div><div class="card gedf-card">
                         <div class="card-header">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="d-flex justify-content-between align-items-center">
@@ -57,6 +85,8 @@ class NewsFeeds extends Component {
                             {comments}
                         </div>
                     </div>
+                    <br/>
+                    </div>
         })
         
         return(
@@ -83,20 +113,31 @@ class NewsFeeds extends Component {
                             <div class="tab-pane fade active show" id="posts" role="tabpanel" aria-labelledby="posts-tab">
                                 <div class="form-group">
                                     <label class="sr-only" for="message">post</label>
-                                    <textarea class="form-control" id="message" rows="3" placeholder="What are you thinking?"></textarea>
+                                    <textarea class="form-control" id="message" rows="3" placeholder="What are you thinking?" value={this.state.postMessage} onChange={this.changePostMessageHandler}></textarea>
                                 </div>
 
                             </div>
                             
                         </div>
+                        <select name="category" id="category">
+                            <option value="others">others</option>
+                            <option value="survey">survey</option>
+                            <option value="goal">goal</option>
+                            <option value="birthday">birthday</option>
+                            <option value="release">release</option>
+                            <option value="lifeEvent">lifeEvent</option>
+                            <option value="recognition">recognition</option>
+                            <option value="celebration">celebration</option>
+                        </select>
                         <div class="btn-toolbar justify-content-between">
                             <div class="btn-group">
-                                <button type="submit" class="btn btn-primary">share</button>
+                                <button type="submit" onClick={this.doPost} class="btn btn-primary">share</button>
                             </div>
                             
                         </div>
                     </div>
                 </div>
+                <br/>
                 {newsFeed}
               </main>
             </div>

@@ -4,26 +4,28 @@ import Login from "./Components/Login";
 import NewsFeeds from "./Components/NewsFeed";
 import Achievements from "./Components/Achievements";
 import Chat from "./Components/Chat";
-import Events from "./Components/Events";
 import Profile from "./Components/Profile";
 import Reports from "./Components/Reports";
 import Header from "./Components/Header";
 import Notification from './Components/Notitification';
 import SignUp from "./Components/SignUp";
 import CognitoLogin from "./Components/CognitoLogin";
+import Services from "./Components/Services"
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import { Component } from 'react';
 
 class App extends Component {
   constructor(props){
     super(props)
+    this.showNavBar = this.showNavBar.bind(this);
   }
-  showNavBar(){
+
+  showNavBar = () => {
     document.getElementById('navbarSupportedContent1').classList.toggle('toggle-nav-bar-display');
   }
 
   render(){
-  return (
+    return (
     <div class="App">
       <Router>
         <Header/>
@@ -41,13 +43,10 @@ class App extends Component {
                 <Link onClick={this.showNavBar} class="nav-link" to="/">News Feed</Link>
               </li>
               <li class="nav-item">
-                <Link onClick={this.showNavBar} class="nav-link" to="/Events">Events</Link>
-              </li>
-              <li class="nav-item">
                 <Link onClick={this.showNavBar} class="nav-link" to="/Chat">Chat</Link>
               </li>
               <li class="nav-item">
-                <Link onClick={this.showNavBar} class="nav-link" to="/Notification">Notification</Link>
+              <Link onClick={this.showNavBar} class="nav-link" to="/Notification">Notification</Link>
               </li>
               <li class="nav-item">
                 <Link onClick={this.showNavBar} class="nav-link" to="/Achievements">Achievements</Link>
@@ -72,7 +71,6 @@ class App extends Component {
         <Route path="/Achievements" exact component={() => <Achievements />} />
         <Route path="/Chat" exact component={() => <Chat />} />
         <Route path="/Notification" exact component={() => <Notification />} />
-        <Route path="/Events" exact component={() => <Events />} />
         <Route path="/Profile" exact component={() => <Profile />} />
         <Route path="/Reports" exact component={() => <Reports />} />
         </Switch>
