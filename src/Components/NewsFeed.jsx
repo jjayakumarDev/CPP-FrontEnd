@@ -29,7 +29,9 @@ class NewsFeeds extends Component {
       
     doPost = () => {
         let category = document.getElementById('category').value;
-
+        var date = new Date();
+        date = date.getDate()+"-"+date.getMonth()+"-"+date.getFullYear();
+        
         const post = {
                 "feedId": "4",
                 "imageKey": "image key",
@@ -37,7 +39,7 @@ class NewsFeeds extends Component {
                 "message": this.state.postMessage,
                 "name": "Jay",
                 "role": "Child Union",
-                "time": new Date().toLocaleString(),
+                "time": date,
                 "topic": category
               }
         Services.postNewsfeed(post); 
