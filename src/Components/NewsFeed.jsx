@@ -39,7 +39,7 @@ class NewsFeeds extends Component {
                 "message": this.state.postMessage,
                 "name": "Jay",
                 "role": "Child Union",
-                "time": date,
+                "date": date,
                 "topic": category
               }
         Services.postNewsfeed(post); 
