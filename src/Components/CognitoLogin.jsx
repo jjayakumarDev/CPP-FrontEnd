@@ -4,20 +4,30 @@ import {CognitoUser, AuthenticationDetails} from 'amazon-cognito-identity-js';
 import { Form } from 'react-bootstrap';
 import {GoogleLogin} from 'react-google-login';
 import {useHistory} from "react-router-dom";
+import Cookies from 'universal-cookie';
 
 export default () => {
     let history = useHistory();
     const [email, setEmail] =   useState('');
     const [password, setPassword] = useState('');
+    const cookies = new Cookies();
 
     const responseGoogle=(response) => {
         if(response){
             if(response.hasOwnProperty("googleId")) {
-                history.push('/')
+                if(response['profileObj']['email']){
+                    cookies.set('id', response['profileObj']['email'], { path: '/' });
+                    console.log(response['profileObj']['email'])
+                }
+                history.push('/NewsFeed')
             } else if(response.hasOwnProperty("error")){
                 alert(response.error)
             }
         }
+    }
+
+    const signUp=()=>{
+        history.push('/SignUp')
     }
     
     const onSubmit= event => {
@@ -36,7 +46,8 @@ export default () => {
         user.authenticateUser(authDetails, {
             onSuccess: data => {
                 console.log('onsuccess:', data);
-                history.push('/') 
+                cookies.set('id', email, { path: '/' });
+                history.push('/NewsFeed') 
             },
     
             onFailure: err => {
@@ -74,6 +85,10 @@ export default () => {
                     onChange={event => setPassword(event.target.value)}/>
             </div>
             <button class="btn btn-secondary" type="submit">Enterprise SignIn
+            </button>
+            <br/>
+            <p></p><br/>
+            <button class="btn btn-secondary" onClick={signUp}>Enterprise SignUp
             </button>
         </Form>
         <br/>

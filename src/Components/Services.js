@@ -5,7 +5,7 @@ const ENTERPRISE_API_URL =  "https://emvkgnm1h8.execute-api.us-east-1.amazonaws.
 class Services {
     //Employe
     getEmployee(id) {
-        return axios.get(ENTERPRISE_API_URL+"employeeFunction?empId="+id);
+        return axios.get(ENTERPRISE_API_URL+"employeeFunction?id="+id);
     }
     postEmployee() {
         return axios.post(ENTERPRISE_API_URL+"employeeFunction");
@@ -46,8 +46,8 @@ class Services {
     }
 
     //Notification
-    getNotification(notificationId) {
-        return axios.get(ENTERPRISE_API_URL+"notificationFunction?notificationId="+notificationId);
+    getNotification(id) {
+        return axios.get(ENTERPRISE_API_URL+"notificationFunction?id="+id);
     }
     postNotification() {
         return axios.post(ENTERPRISE_API_URL+"notificationFunction");

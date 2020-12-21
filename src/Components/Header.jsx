@@ -24,18 +24,6 @@ class Header extends Component {
                     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"/>
-                    <ul class="navbar-nav px-3">
-                        <li class="nav-item text-nowrap">
-                        <GoogleLogout
-                            clientId="529134937712-vl75md1n55ih9hfa4c4g26l9nbhtuqd8.apps.googleusercontent.com"
-                            buttonText="Logout"
-                            onLogoutSuccess={this.responseGoogle}
-                            onFailure={this.responseGoogle}
-                            cookiePolicy={'single_host_origin'}
-                        />
-                        </li>
-                    </ul>
                 </nav>
                 
             }

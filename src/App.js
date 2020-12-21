@@ -39,8 +39,11 @@ class App extends Component {
           <div class="collapse navbar-collapse" id="navbarSupportedContent1">
 
             <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <Link onClick={this.showNavBar} class="nav-link" to="/">Sign In</Link>
+              </li>
               <li class="nav-item">
-                <Link onClick={this.showNavBar} class="nav-link" to="/">News Feed</Link>
+                <Link onClick={this.showNavBar} class="nav-link" to="/NewsFeed">News Feed</Link>
               </li>
               <li class="nav-item">
                 <Link onClick={this.showNavBar} class="nav-link" to="/Chat">Chat</Link>
@@ -64,10 +67,9 @@ class App extends Component {
         </nav>
         
         <Switch>
-        <Route path="/Login" exact component={() => <Login />} />
-        <Route path="/CognitoLogin" exact component={() => <CognitoLogin />} />
+        <Route path="/" exact component={() => <CognitoLogin />} />
         <Route path="/SignUp" exact component={() => <SignUp />} />
-        <Route path="/" exact component={() => <NewsFeeds />} />
+        <Route path="/NewsFeed" exact component={() => <NewsFeeds />} />
         <Route path="/Achievements" exact component={() => <Achievements />} />
         <Route path="/Chat" exact component={() => <Chat />} />
         <Route path="/Notification" exact component={() => <Notification />} />

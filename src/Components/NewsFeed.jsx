@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import Services from './Services';
 import Category from './CategoryService';
+import Cookies from 'universal-cookie';
 
 class NewsFeeds extends Component {
     constructor(props){
@@ -30,10 +31,14 @@ class NewsFeeds extends Component {
     doPost = () => {
         let category = document.getElementById('category').value;
         var date = new Date();
-        date = date.getDate()+"-"+date.getMonth()+"-"+date.getFullYear();
+        date = date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
+        const cookies = new Cookies();
+        let id = cookies.get('id');
+        id = id.replace('%40','@');
+        console.log(id)
         
         const post = {
-                "feedId": "4",
+                "id": id,
                 "imageKey": "image key",
                 "likesCount": "0",
                 "message": this.state.postMessage,

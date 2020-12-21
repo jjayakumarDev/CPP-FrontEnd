@@ -12,7 +12,7 @@ class Notification extends Component {
     }
 
     componentDidMount(){
-        Services.getNotification("1").then((res) => {
+        Services.getNotification("shathis.jayakumar@gmail.com").then((res) => {
             this.setState({rootNotifications:res.data})
             this.setState({notifications: res.data.notifications})
         });
