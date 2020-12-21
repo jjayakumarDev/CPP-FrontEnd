@@ -2,6 +2,7 @@ import {Component} from "react";
 import { Bar } from "react-chartjs-2";
 import { MDBContainer } from "mdbreact";
 import Service from './Services';
+import Cookies from 'universal-cookie';
 
 class Reports extends Component {
 
@@ -12,64 +13,11 @@ class Reports extends Component {
     }
 }
 
-  /*state = {
-    dataBar: {
-      labels: ["Sprint 1", "Sprint 2", "Sprint 3", "Sprint 4", "Sprint 5", "Sprint 6"],
-      datasets: [
-        { 
-          label: "% of performance",
-          data: [5, 18, 13, 15, 10, 22],
-          backgroundColor: [
-            "rgba(255, 134,159,0.4)",
-            "rgba(98,  182, 239,0.4)",
-            "rgba(255, 218, 128,0.4)",
-            "rgba(113, 205, 205,0.4)",
-            "rgba(170, 128, 252,0.4)",
-            "rgba(255, 177, 101,0.4)"
-          ],
-          borderWidth: 2,
-          borderColor: [
-            "rgba(255, 134, 159, 1)",
-            "rgba(98,  182, 239, 1)",
-            "rgba(255, 218, 128, 1)",
-            "rgba(113, 205, 205, 1)",
-            "rgba(170, 128, 252, 1)",
-            "rgba(255, 177, 101, 1)"
-          ]
-        }
-      ]
-    },
-    barChartOptions: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        xAxes: [
-          {
-            barPercentage: 1,
-            gridLines: {
-              display: true,
-              color: "rgba(0, 0, 0, 0.1)"
-            }
-          }
-        ],
-        yAxes: [
-          {
-            gridLines: {
-              display: true,
-              color: "rgba(0, 0, 0, 0.1)"
-            },
-            ticks: {
-              beginAtZero: true
-            }
-          }
-        ]
-      }
-    }
-  }
-  */
-
   componentDidMount(){
-    Service.getFeedback('1').then((res) => {
+    const cookies = new Cookies();
+    let id = cookies.get('id');
+    id = id.replace('%40','@');
+    Service.getFeedback(id).then((res) => {
         this.setState({feedback:res.data})
         console.log(this.state.feedback)
     });

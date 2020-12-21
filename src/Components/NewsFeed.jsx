@@ -78,7 +78,7 @@ class NewsFeeds extends Component {
 
                         </div>
                         <div class="card-body">
-                            <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>{this.state.feed[key].time}</div>
+                            <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>{this.state.feed[key].date}</div>
                             <a class="card-link" href="#">
                                 <h5 class="card-title">{this.state.feed[key].topic}</h5>
                             </a>

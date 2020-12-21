@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import Services from './Services';
+import Cookies from 'universal-cookie';
     
 class Notification extends Component {
     constructor(props){
@@ -12,7 +13,10 @@ class Notification extends Component {
     }
 
     componentDidMount(){
-        Services.getNotification("shathis.jayakumar@gmail.com").then((res) => {
+        const cookies = new Cookies();
+        let id = cookies.get('id');
+        id = id.replace('%40','@');
+        Services.getNotification(id).then((res) => {
             this.setState({rootNotifications:res.data})
             this.setState({notifications: res.data.notifications})
         });

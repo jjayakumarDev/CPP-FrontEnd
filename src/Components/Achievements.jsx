@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import Services from './Services';
+import Cookies from 'universal-cookie';
 
 class Achievements extends Component {
     constructor(props){
@@ -10,7 +11,10 @@ class Achievements extends Component {
     }
 
     componentDidMount(){
-        Services.getAchievement('1').then((res) => {
+        const cookies = new Cookies();
+        let id = cookies.get('id');
+        id = id.replace('%40','@');
+        Services.getAchievement(id).then((res) => {
             this.setState({achievementsData:res.data.achievement})
             console.log(this.state.achievementsData)
         });
